@@ -7,4 +7,4 @@ helm install bootstrap-v1 bootstrap/ --values bootstrap/values.yaml
 helm install monitoring-stack-v1 monitoring-stack/ --values monitoring-stack/values.yaml
 helm install databases-v1 databases/ --values databases/values.yaml
 helm install grafana-config-v1 grafana-config/ --values grafana-config/values.yaml
-helm install app/ --values app/values.yaml
+helm install app-v1 app/ --values app/values.yaml

@@ -32,6 +32,7 @@ spec:
   selector:
     app: flask-app-deployment
   ports:
-    - port: 6000
+    - port: 5000
       targetPort: 5000
-  type: LoadBalancer
+      nodePort: 30002
+  type: NodePort

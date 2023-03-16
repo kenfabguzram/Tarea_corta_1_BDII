@@ -8,3 +8,4 @@ helm install monitoring-stack-v1 monitoring-stack/ --values monitoring-stack/val
 helm install databases-v1 databases/ --values databases/values.yaml
 helm install grafana-config-v1 grafana-config/ --values grafana-config/values.yaml
 helm install app-v1 app/ --values app/values.yaml
+kubectl apply -f app/Deployment.yaml

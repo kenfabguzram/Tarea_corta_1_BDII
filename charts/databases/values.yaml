@@ -4,9 +4,15 @@ mongodb:
 postgresql-ha:
   enabled: false
 mariadb-galera:
-  enabled: false
-elastic:
+  secondary:
+    replicaCount: 1
+  rootUser:
+    user: root
+    password: "p"
+    forcePassword: false
   enabled: true
+elastic:
+  enabled: false
   version: 8.6.1
   replicas: 1
   name: ic4302

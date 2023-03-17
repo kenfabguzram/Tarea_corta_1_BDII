@@ -2,6 +2,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
 
+//Agregar este archivo dentro de una carpeta llamada Simulation antes de ejecutar
 class MySimulation extends Simulation {
 
   val httpConf = http
@@ -10,7 +11,7 @@ class MySimulation extends Simulation {
 
   val scn = scenario("Enviar JSON a Flask")
     .exec(http("POST JSON")
-      .post("/prueba")
+      .post("/") //Se cambia por la ruta que se definio en flask
       .body(StringBody("""{
         "animales": [
           {
@@ -26,7 +27,7 @@ class MySimulation extends Simulation {
             "Nombre": "Bruno"
           }
         ]
-      }""")).asJson
+      }""")).asJson  //Todo ese texto es el JSON que se va a enviar, se puede modificar para hacerlo como se desee
       .check(status.is(200)))
 
   setUp(

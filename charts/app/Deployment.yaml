@@ -1,38 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-app-deployment
+  name: my-flask-app
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: flask-app
+      app: my-flask-app
+  replicas: 1
   template:
     metadata:
       labels:
-        app: flask-app
+        app: my-flask-app
     spec:
       containers:
-        - name: flask-app
+        - name: my-flask-app
           image: isolis2000/flask-app:latest
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
           ports:
             - containerPort: 5000
-
-      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: flask-app-service
+  name: my-flask-app
 spec:
-  selector:
-    app: flask-app-deployment
-  ports:
-    - port: 5000
-      targetPort: 5000
-      nodePort: 30002
   type: NodePort
+  selector:
+    app: my-flask-app
+  ports:
+    - port: 80
+      targetPort: 5000
+      nodePort: 30000

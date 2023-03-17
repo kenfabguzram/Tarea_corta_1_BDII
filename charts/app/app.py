@@ -2,13 +2,12 @@ import flask
 import prometheus_client as pc
 import werkzeug as wz
 import mariadb
+import json
 
 app = flask.Flask(__name__)
 REQUEST_COUNT = pc.Counter("http_requests_total", "Total HTTP Requests")
 
 # app.wsgi_app = wz.DispatcherMiddleware(app.wsgi_app, {"/metrics": pc.make_wsgi_app()})
-
-incomes = [{"description": "salary", "amount": 5000}]
 
 conn = mariadb.connect(
     host="10.104.50.23",
@@ -19,7 +18,7 @@ conn = mariadb.connect(
 )
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
     return "2"
 
@@ -27,19 +26,32 @@ def home():
 cur = conn.cursor()
 
 
-@app.route("/index")
-def index():
-    animals_result = ""
-    cur.execute("SELECT * FROM Animals", animals_result)
-    return f"Connected to database: {animals_result}"
+@app.route("/mariadb/get", methods=["GET"])
+def mariadb_get():
+    json_input = flask.request.get_json()
+    query = json_input["query"]
+    try:
+        cur.execute(query)
+
+        row_headers = [x[0] for x in cur.description]
+        json_data = []
+        for result in cur:
+            json_data.append(dict(zip(row_headers, result)))
+        return json.dumps(json_data)
+    except mariadb.Error as e:
+        return f"Error: {e}"
+
+
+@app.route("/mariadb/post", methods=["POST"])
+def mariadb_post():
+    json_input = flask.request.get_json()
+    query = json_input["query"]
+    try:
+        cur.execute(query)
+    except mariadb.Error as e:
+        return f"Error: {e}"
 
 
 @app.route("/app_metrics")
 def metrics():
     return "REQUEST_COUNT"
-
-
-@app.route("/incomes", methods=["POST"])
-def add_income():
-    incomes.append(flask.request.get_json())
-    return incomes

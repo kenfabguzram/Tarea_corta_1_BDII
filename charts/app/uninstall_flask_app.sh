@@ -1,2 +1,2 @@
-minikube kubectl delete deployment flask-app-deployment
-minikube kubectl delete service flask-app-service
+minikube kubectl delete deployment my-flask-app
+minikube kubectl delete service my-flask-app

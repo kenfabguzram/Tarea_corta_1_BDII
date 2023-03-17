@@ -1,6 +1,9 @@
 mongodb:
-  enabled: false
-  replicas: 3
+  enabled: true
+  replicas: 1
+  metrics:
+    serviceMonitor:
+      enabled: true
 postgresql-ha:
   enabled: false
 mariadb-galera:

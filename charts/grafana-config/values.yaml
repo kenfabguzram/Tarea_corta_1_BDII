@@ -5,3 +5,7 @@ dashboards:
     name: elasticsearch
     file: elasticsearch.json
     enable: true
+  mongodb:
+    name: mongodb
+    file: mongodb_rev2.json
+    

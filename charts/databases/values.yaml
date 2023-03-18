@@ -35,10 +35,6 @@ postgresql-ha:
 mariadb:
   enabled: true
   replicas: 1
-  rootUser:
-    user: root
-    password: "p"
-    forcePassword: false
   db:
     user: my_user
     password: "p"
@@ -57,10 +53,6 @@ mariadb:
 mariadb-galera:
   enabled: true
   replicas: 1
-  rootUser:
-    user: root
-    password: "p"
-    forcePassword: false
   db:
     user: my_user
     password: "p"

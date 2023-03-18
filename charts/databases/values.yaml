@@ -1,25 +1,92 @@
 mongodb:
-  enabled: false
-  replicas: 3
+  enabled: true
+  replicas: 1
+  mongodbUsername: my_user
+  mongodbPassword: "p"
+  mongodbDatabase: my_database
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
 postgresql-ha:
-  enabled: false
-mariadb-galera:
-  secondary:
-    replicaCount: 1
+  enabled: true
+  replicas: 1
+  postgresqlUsername: my_user
+  postgresqlPassword: "p"
+  postgresqlDatabase: my_database
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+mariadb:
+  enabled: true
+  replicas: 1
   rootUser:
     user: root
     password: "p"
     forcePassword: false
+  db:
+    user: my_user
+    password: "p"
+    name: my_database
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+mariadb-galera:
   enabled: true
+  replicas: 1
+  rootUser:
+    user: root
+    password: "p"
+    forcePassword: false
+  db:
+    user: my_user
+    password: "p"
+    name: my_database
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
 elastic:
   enabled: false
   version: 8.6.1
   replicas: 1
   name: ic4302
+
 kibana:
   version: 8.6.1
   replicas: 1
   name: ic4302
+
 prometheus-elasticsearch-exporter:
   env:
     ES_USERNAME: elastic

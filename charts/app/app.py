@@ -14,8 +14,6 @@ REQUEST_COUNT = pc.Counter("http_requests_total", "Total HTTP Requests")
 # POSTGRESQL_HOST = ""
 # POSTGRESQLHA_HOST = ""
 
-# app.wsgi_app = wz.DispatcherMiddleware(app.wsgi_app, {"/metrics": pc.make_wsgi_app()})
-
 # MariaDB -------------------------------------------------------------------
 def get_mariadb_cursor(host_ip: str):
     mariadb_connection = mariadb.connect(
@@ -49,72 +47,18 @@ def mariadb_post():
                 json_data.append(dict(zip(row_headers, result)))
             return json.dumps(json_data)
         else:
-
             return str(result)
     except mariadb.Error as e:
         return f"Error: {e}"
 
 
-# # MariaDB-Galera --------------------------------------------------------------
-# def get_mariadb_galera_cursor(host_ip: str):
-#     mariadb_galera_connection = mariadb.connect(
-#         host=host_ip,
-#         port=3306,
-#         user="my_user",
-#         password="p",
-#         database="my_database",
-#     )
-#     return mariadb_galera_connection.cursor()
-
-
-# @app.route("/mariadb-galera/get", methods=["GET"])
-# def mariadb_galera_get():
-#     json_input = flask.request.get_json()
-#     query = json_input["query"]
-#     host_ip = json_input["host"]
-#     try:
-#         mariadb_galera_cursor = get_mariadb_galera_cursor(host_ip)
-#         if mariadb_galera_cursor is None:
-#             return "Error: please check the host ip and try again"
-#         mariadb_galera_cursor.execute(query)
-
-#         row_headers = [x[0] for x in mariadb_galera_cursor.description]
-#         json_data = []
-#         for result in mariadb_galera_cursor:
-#             json_data.append(dict(zip(row_headers, result)))
-#         return json.dumps(json_data)
-#     except mariadb.Error as e:
-#         return f"Error: {e}"
-
-
-# @app.route("/mariadb-galera/post", methods=["POST"])
-# def mariadb_galera_post():
-#     json_input = flask.request.get_json()
-#     query = json_input["query"]
-#     host_ip = json_input["host"]
-#     try:
-#         mariadb_galera_cursor = get_mariadb_galera_cursor(host_ip)
-#         if mariadb_galera_cursor is None:
-#             return "Error: please check the host ip and try again"
-#         mariadb_galera_cursor.execute(query)
-#         row_headers = [x[0] for x in mariadb_galera_cursor.description]
-#         json_data = []
-#         for result in mariadb_galera_cursor:
-#             json_data.append(dict(zip(row_headers, result)))
-#         return json.dumps(json_data)
-#     except mariadb.Error as e:
-#         return f"Error: {e}"
-
-
 # MongoDB -------------------------------------------------------------------
 def mongo_insert(host_ip: str, animals_to_insert: list):
-    # Set up a MongoDB client
     connection_string = f"mongodb://{host_ip}:27017/my_database"
     client = mongo.MongoClient(connection_string)
     db = client["my_database"]
     collection = db["animales"]
     return collection.insert_many(animals_to_insert)
-    # return db.list_collection_names()
 
 
 def mongo_find(host_ip: str):

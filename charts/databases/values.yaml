@@ -19,11 +19,11 @@ mongodb:
 postgresql-ha:
   enabled: true
   replicas: 1
-  postgresqlUsername: my_user
-  postgresqlPassword: "p"
-  postgresqlDatabase: my_database
-  auth:
-    enabled: false
+  architecture: replication
+  replication:
+    synchronousCommit: "off"
+    numSynchronousReplicas: 0
+    applicationName: my_application
   persistence:
     enabled: true
     size: 1Gi
@@ -38,14 +38,9 @@ postgresql-ha:
 mariadb:
   enabled: true
   replicas: 1
-  rootUser:
-    user: root
-    password: "p"
-    forcePassword: true
-  db:
-    user: my_user
-    password: "p"
-    name: my_database
+  auth:
+    rootPassword: "p"
+    database: my_database
   persistence:
     enabled: true
     size: 1Gi
@@ -63,7 +58,7 @@ mariadb-galera:
   rootUser:
     user: root
     password: "p"
-    forcePassword: true
+    forcePassword: false
   db:
     user: my_user
     password: "p"

@@ -3,4 +3,8 @@ dependencies:
   repository: https://helm.elastic.co
   version: 2.6.1
 digest: sha256:b505ce00d798f05789cc9e7fb286d7deeb3f1fc88957d10da6c1bd17979e5551
+<<<<<<< HEAD
 generated: "2023-03-23T22:25:42.770915987-06:00"
+=======
+generated: "2023-03-23T17:50:59.710771254-06:00"
+>>>>>>> dafb326 (mongodb working and mariadb fixed)

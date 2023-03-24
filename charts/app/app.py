@@ -8,6 +8,11 @@ import pymongo as mongo
 
 app = flask.Flask(__name__)
 REQUEST_COUNT = pc.Counter("http_requests_total", "Total HTTP Requests")
+# MARIADB_HOST = ""
+# MARIADBGALERA_HOST = ""
+# MONGODB_HOST = ""
+# POSTGRESQL_HOST = ""
+# POSTGRESQLHA_HOST = ""
 
 # MariaDB -------------------------------------------------------------------
 def get_mariadb_cursor(host_ip: str):

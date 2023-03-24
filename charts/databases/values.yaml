@@ -1,9 +1,29 @@
 mongodb:
   enabled: true
+  replicaCount: 1
+  auth:
+    enabled: false
+    rootUser: root
+    rootPassword: "p"
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    limits:
+      cpu: 1.5
+      memory: 2Gi
+    requests:
+      cpu: 1.5
+      memory: 1Gi
+
+postgresql:
+  enabled: true
   replicas: 1
-  mongodbUsername: my_user
-  mongodbPassword: "p"
-  mongodbDatabase: my_database
+  architecture: replication
+  replication:
+    synchronousCommit: "off"
+    numSynchronousReplicas: 0
+    applicationName: my_application
   persistence:
     enabled: true
     size: 1Gi
@@ -16,11 +36,13 @@ mongodb:
       memory: 256Mi
 
 postgresql-ha:
-  enabled: true
+  enabled: false
   replicas: 1
-  postgresqlUsername: my_user
-  postgresqlPassword: "p"
-  postgresqlDatabase: my_database
+  architecture: replication
+  replication:
+    synchronousCommit: "off"
+    numSynchronousReplicas: 0
+    applicationName: my_application
   persistence:
     enabled: true
     size: 1Gi
@@ -35,10 +57,9 @@ postgresql-ha:
 mariadb:
   enabled: true
   replicas: 1
-  db:
-    user: my_user
-    password: "p"
-    name: my_database
+  auth:
+    rootPassword: "p"
+    database: my_database
   persistence:
     enabled: true
     size: 1Gi
@@ -52,7 +73,11 @@ mariadb:
 
 mariadb-galera:
   enabled: true
-  replicas: 1
+  replicaCount: 1
+  rootUser:
+    user: root
+    password: "p"
+    forcePassword: false
   db:
     user: my_user
     password: "p"

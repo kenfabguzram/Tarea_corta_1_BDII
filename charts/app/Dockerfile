@@ -12,6 +12,7 @@ RUN chmod +x mariadb_repo_setup
 RUN ./mariadb_repo_setup \
     --mariadb-server-version="mariadb-10.6"
 RUN apt install libmariadb3 libmariadb-dev -y
+RUN apt-get install libpq-dev
 
 RUN pip install --no-cache-dir -r requirements.txt
 

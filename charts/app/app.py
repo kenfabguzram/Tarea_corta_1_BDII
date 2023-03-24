@@ -49,7 +49,6 @@ def mariadb_post():
                 json_data.append(dict(zip(row_headers, result)))
             return json.dumps(json_data)
         else:
-
             return str(result)
     except mariadb.Error as e:
         return f"Error: {e}"

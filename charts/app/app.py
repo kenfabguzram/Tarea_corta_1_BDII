@@ -10,7 +10,7 @@ REQUEST_COUNT = pc.Counter("http_requests_total", "Total HTTP Requests")
 # app.wsgi_app = wz.DispatcherMiddleware(app.wsgi_app, {"/metrics": pc.make_wsgi_app()})
 
 conn = mariadb.connect(
-    host="10.96.145.4",
+    host="10.101.19.96",
     port=3306,
     user="my_user",
     password="p",

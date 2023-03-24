@@ -17,7 +17,7 @@ mongodb:
       memory: 1Gi
 
 postgresql-ha:
-  enabled: false
+  enabled: true
   replicas: 1
   architecture: replication
   replication:

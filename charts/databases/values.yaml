@@ -16,8 +16,27 @@ mongodb:
       cpu: 1.5
       memory: 1Gi
 
-postgresql-ha:
+postgresql:
   enabled: true
+  replicas: 1
+  architecture: replication
+  replication:
+    synchronousCommit: "off"
+    numSynchronousReplicas: 0
+    applicationName: my_application
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+postgresql-ha:
+  enabled: false
   replicas: 1
   architecture: replication
   replication:

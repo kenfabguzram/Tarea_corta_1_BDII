@@ -40,11 +40,11 @@ def mariadb_post():
             json_data = []
             for result in mariadb_cursor:
                 json_data.append(dict(zip(row_headers, result)))
-            return json.dumps(json_data), 200
+            return json.dumps(json_data)
         else:
-            return str(result), 100
+            return str(result)
     except mariadb.Error as e:
-        return f"Error: {e}", 300
+        return f"Error: {e}"
 
 
 # MongoDB -------------------------------------------------------------------

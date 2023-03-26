@@ -1,5 +1,5 @@
 mongodb:
-  enabled: true
+  enabled: false
   replicaCount: 1
   auth:
     enabled: false
@@ -15,9 +15,14 @@ mongodb:
     requests:
       cpu: 1.5
       memory: 1Gi
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      namespace: "monitoring"
 
-postgresql-ha:
-  enabled: true
+postgresql:
+  enabled: false
   replicas: 1
   architecture: replication
   replication:
@@ -34,6 +39,35 @@ postgresql-ha:
     requests:
       cpu: 100m
       memory: 256Mi
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      namespace: "monitoring"
+
+postgresql-ha:
+  enabled: false
+  replicas: 1
+  architecture: replication
+  replication:
+    synchronousCommit: "off"
+    numSynchronousReplicas: 0
+    applicationName: my_application
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      namespace: "monitoring"
 
 mariadb:
   enabled: true
@@ -51,9 +85,14 @@ mariadb:
     requests:
       cpu: 100m
       memory: 256Mi
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      namespace: "monitoring"
 
 mariadb-galera:
-  enabled: true
+  enabled: false
   replicaCount: 1
   rootUser:
     user: root
@@ -73,7 +112,12 @@ mariadb-galera:
     requests:
       cpu: 100m
       memory: 256Mi
-
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      namespace: "monitoring"
+      
 elastic:
   enabled: false
   version: 8.6.1

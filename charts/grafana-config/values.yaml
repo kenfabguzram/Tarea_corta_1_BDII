@@ -5,3 +5,7 @@ dashboards:
     name: elasticsearch
     file: elasticsearch.json
     enable: true
+  mariadb:
+    name: mariadb
+    file: mariadb.json
+    enable: true

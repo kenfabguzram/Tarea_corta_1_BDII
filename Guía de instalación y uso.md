@@ -11,7 +11,7 @@ Kenneth Palacios Molina       - 2020035407
 Jose Pablo Quesada            - 2020211670
 Iván Solís Ávila              - 2018209698
 Primer semestre del 2023
-Entrega: viernes 24 de febrero del 2023 – Semana 3
+Entrega: Domingo 26 de Marzo del 2023
 
 
 

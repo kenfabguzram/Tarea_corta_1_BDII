@@ -38,14 +38,8 @@ Pasos:
 - Ingresar a la sección de  "services".
 - Realizar una operación de forward en el servicio "monitoring-stack--prometheu-prometheus".
 - Desde el navegador en la API de prometheus se debe ingresar a "status" y aquí se observaran las bases de datos que se están monitoreando.
-## Sección 6: Ingresar al dashboard de la base de datos que se desee monitorear
-Pasos:
-- Ingresar a Lens.
-- Ingresar a la sección de  "services".
-- Realizar una operación de forward en el servicio "grafana-service".
-- Desde el API de grafana se debe hacer click en los cuadrados ubicados en la parte izquierda, esto abrirá una ventana con los dashboards disponibles.
-- Se debe elegir el dashboard de la base de datos que se desea monitorear y que anteriormente se verificó que prometheus estaba monitoreandola.
-## Sección 7: Ingresar queries a la base de datos por medio de Gatling
+
+## Sección 6: Ingresar queries a la base de datos por medio de Gatling
 Pasos:
 - Descargar Gatling en su dispositivo, este se descarga desde la página oficial, el cual estará contenido en un zip, simplemente se debería extraer.
 - Ingresar a la carpeta de descarga de gatling.
@@ -57,5 +51,10 @@ Pasos:
 - Una vez hecho esto Gatling leerá el archivo y realizara lo que este contiene.
 - Es importante mencionar que antes de ejecutar el archivo deseado es importante abrirlo en un editor de texto y leer todos los comentarios que contiene este, ya que debería cambiar algunos valores de acuerdo con sus requerimientos.  
 
-## Sección 8: Observación de métricas
-
+## Sección 7: Observación de métricas
+Pasos:
+- Ingresar a Lens.
+- Ingresar a la sección de  "services".
+- Realizar una operación de forward en el servicio "grafana-service".
+- Desde el API de grafana se debe hacer click en los cuadrados ubicados en la parte izquierda, esto abrirá una ventana con los dashboards disponibles.
+- Se debe elegir el dashboard de la base de datos que se desea monitorear y que anteriormente se verificó que prometheus estaba monitoreandola, desde aquí se puede observar la actividad de la base de datos.

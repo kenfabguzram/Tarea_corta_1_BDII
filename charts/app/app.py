@@ -4,6 +4,7 @@ import werkzeug as wz
 import mariadb
 import json
 import pymongo as mongo
+import psycopg2 as psql
 
 
 app = flask.Flask(__name__)
@@ -81,6 +82,31 @@ def mongo_get():
     json_input = flask.request.get_json()
     host_ip = json_input["host"]
     return str(mongo_find(host_ip))
+
+
+# PostgreSQL ----------------------------------------------------------------
+def get_postgresql_cursor(host_ip: str):
+    conn = psql.connect(
+        host=host_ip,
+        database="my_database",
+        user="root",
+        password="p",
+    )
+    return conn.cursor()
+
+
+@app.route("/postgresql/post", methods=["POST"])
+def postgresql_post():
+    json_input = flask.request.get_json()
+    query = json_input["query"]
+    host_ip = json_input["host"]
+    try:
+        cursor = get_postgresql_cursor(host_ip)
+        cursor.execute(query)
+        fetch_result = cursor.fetchall()
+        return str(fetch_result)
+    except (Exception, psql.DatabaseError) as error:
+        return f"Error: {error}"
 
 
 # Metrics

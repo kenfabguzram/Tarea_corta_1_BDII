@@ -1,6 +1,6 @@
 mongodb:
   enabled: true
-  replicaCount: 1
+  replicaCount: 3
   auth:
     enabled: false
     rootUser: root
@@ -16,14 +16,33 @@ mongodb:
       cpu: 1.5
       memory: 1Gi
 
-postgresql-ha:
+postgresql:
   enabled: true
-  replicas: 1
-  architecture: replication
   replication:
     synchronousCommit: "off"
-    numSynchronousReplicas: 0
-    applicationName: my_application
+    numSynchronousReplicas: 1
+  auth:
+    postgresPassword: "p"
+    username: "my_user"
+    password: "p"
+    database: "my_database"
+  persistence:
+    enabled: true
+    size: 1Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+postgresql-ha:
+  enabled: true
+  replicaCount: 1
+  username: "root"
+  password: "p"
+  database: "my_database"
   persistence:
     enabled: true
     size: 1Gi
@@ -37,7 +56,7 @@ postgresql-ha:
 
 mariadb:
   enabled: true
-  replicas: 1
+  replicas: 3
   auth:
     rootPassword: "p"
     database: my_database
@@ -54,7 +73,7 @@ mariadb:
 
 mariadb-galera:
   enabled: true
-  replicaCount: 1
+  replicaCount: 2
   rootUser:
     user: root
     password: "p"
@@ -77,7 +96,7 @@ mariadb-galera:
 elastic:
   enabled: false
   version: 8.6.1
-  replicas: 1
+  replicas: 3
   name: ic4302
 
 kibana:

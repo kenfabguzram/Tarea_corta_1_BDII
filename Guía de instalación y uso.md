@@ -46,12 +46,16 @@ Pasos:
 - Desde el API de grafana se debe hacer click en los cuadrados ubicados en la parte izquierda, esto abrirá una ventana con los dashboards disponibles.
 - Se debe elegir el dashboard de la base de datos que se desea monitorear y que anteriormente se verificó que prometheus estaba monitoreandola.
 ## Sección 7: Ingresar queries a la base de datos por medio de Gatling
-Pasos:  
-- Ingresar a la carpeta de descarga de gatling
-- Tomar el archivo Prueba.scala del documento enviados e insertarlo dentro de la ruta  ./user-files/simulations
-- Ejecutar el archivo Gatling.sh en el caso de ejecutarse en linux o gatling.bat en el caso de ser windows
-- Presionar el boton numero 1 (opcion: run the simulation locally)
-
+Pasos:
+- Descargar Gatling en su dispositivo, este se descarga desde la página oficial, el cual estará contenido en un zip, simplemente se debería extraer.
+- Ingresar a la carpeta de descarga de gatling.
+- Ingresar en la ruta /user-files/simulations y dentro de esta carpeta mover los archivos que se encuentran en la carpeta "Archivos Para Gatling", importante mencionar que todos los archivos que se encuentran aquí tienen una extensión scala.
+- Una vez trasladados los archivos a la carpeta "simulations" de Gatling, se podrá correr cualquiera de estos.
+- Simplemente se va a la ruta /bin y se ejecuta el archivo Gatling.sh en el caso de ejecutarse en Linux o gatling.bat en el caso de ser Windows.
+- Presionar el botón numero 1 (opcion: run the simulation locally).
+- Posteriormente se escogerá cuál de los archivos se desea ejecutar, dependiendo de la base a la que se desee hacer request.
+- Una vez hecho esto Gatling leerá el archivo y realizara lo que este contiene.
+- Es importante mencionar que antes de ejecutar el archivo deseado es importante abrirlo en un editor de texto y leer todos los comentarios que contiene este, ya que debería cambiar algunos valores de acuerdo con sus requerimientos.  
 
 ## Sección 8: Observación de métricas
 
